@@ -1,5 +1,36 @@
+# --------------------------------------------------
+# Dependencies (Matches all sub-folders automatically)
+# --------------------------------------------------
 node_modules/
-.env
-*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# --------------------------------------------------
+# SAP CAP & BTP Build Outputs / Deployment Archives
+# --------------------------------------------------
+gen/
 dist/
+mta_archives/
+*.mtar
+*.mbt
 resources/
+archive.zip
+
+# --------------------------------------------------
+# Local Secrets & Credentials (NEVER commit these)
+# --------------------------------------------------
+default-env.json
+default-services.json
+.env
+*.local.json
+.cdsrc-private.json
+
+# --------------------------------------------------
+# IDE, OS & Workspace Settings
+# --------------------------------------------------
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.code-workspace
