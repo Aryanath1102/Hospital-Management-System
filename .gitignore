@@ -16,6 +16,7 @@ mta_archives/
 *.mbt
 resources/
 archive.zip
+GEMINI.md
 
 # --------------------------------------------------
 # Local Secrets & Credentials (NEVER commit these)
