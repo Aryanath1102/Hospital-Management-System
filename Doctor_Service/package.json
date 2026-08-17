@@ -5,15 +5,15 @@
     "@cap-js/hana": "^2",
     "@sap/cds": "^9.9.3",
     "@sap/xssec": "^4",
-    "validator": "^13.15.35",
-    "cds-swagger-ui-express": "^0.11.0"
+    "cds-swagger-ui-express": "^0.11.0",
+    "validator": "^13.15.35"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^2.4",
     "@sap/cds-dk": "^9",
     "cds-plugin-ui5": "^0.17.0",
-    "rimraf": "^5.0.5",
-    "mbt": "^1.2.49"
+    "mbt": "^1.2.49",
+    "rimraf": "^5.0.5"
   },
   "scripts": {
     "start": "cds-serve",

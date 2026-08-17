@@ -28,11 +28,11 @@
         }
       },
       "DoctorService": {
-      "kind": "odata",
-      "credentials": {
-        "destination": "DoctorService"
-      }
-    },
+        "kind": "odata",
+        "credentials": {
+          "destination": "DoctorService"
+        }
+      },
       "[production]": {
         "auth": "xsuaa"
       }
