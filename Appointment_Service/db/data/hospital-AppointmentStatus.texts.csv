@@ -1,0 +1,10 @@
+code,locale,name,descr
+Completed,fi,Scheduled,Scheduled
+Completed,sv,Confirmed,Confirmed
+Confirmed,hu,Cancelled,Cancelled
+Confirmed,ar,Cancelled,Cancelled
+Completed,ms,Cancelled,Cancelled
+Completed,es,Cancelled,Cancelled
+Cancelled,ms,Cancelled,Cancelled
+Cancelled,de,Scheduled,Scheduled
+Confirmed,ru,Scheduled,Scheduled

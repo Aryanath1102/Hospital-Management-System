@@ -1,0 +1,64 @@
+{
+  "xsappname": "Appointment_Service-75ebc843trial-dev",
+  "tenant-mode": "dedicated",
+  "foreign-scope-references": [
+    "Patient_Service-75ebc843trial-dev!t682068.PatientAdmin",
+    "Patient_Service-75ebc843trial-dev!t682068.PatientService.Read",
+    "Doctor_Service-75ebc843trial-dev!t682068.DoctorService.Read"
+  ],
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.AppointmentService",
+      "description": "Appointment Service application scope"
+    }
+  ],
+  "authorities": [
+    "Patient_Service-75ebc843trial-dev!t682068.PatientAdmin",
+    "Patient_Service-75ebc843trial-dev!t682068.PatientService.Read",
+    "Doctor_Service-75ebc843trial-dev!t682068.DoctorService.Read"
+  ],
+  "role-templates": [
+    {
+      "name": "AppointmentUser",
+      "description": "Appointment Service user",
+      "scope-references": [
+        "$XSAPPNAME.AppointmentService"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "PatientServiceReader",
+      "description": "Read access to Patient Service",
+      "scope-references": [
+        "Patient_Service-75ebc843trial-dev!t682068.PatientService.Read"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "PatientAdmin",
+      "description": "Full access to Patient Service",
+      "scope-references": [
+        "Patient_Service-75ebc843trial-dev!t682068.PatientAdmin"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "DoctorServiceReader",
+      "description": "Read access to Doctor Service",
+      "scope-references": [
+        "Doctor_Service-75ebc843trial-dev!t682068.DoctorService.Read"
+      ],
+      "attribute-references": []
+    }
+  ],
+  "oauth2-configuration": {
+    "redirect-uris": [
+      "https://*.cfapps.us10-003.hana.ondemand.com/**"
+    ],
+    "credential-types": [
+      "binding-secret",
+      "x509"
+    ]
+  },
+  "attributes": []
+}
