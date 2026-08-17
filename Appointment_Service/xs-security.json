@@ -4,7 +4,8 @@
   "foreign-scope-references": [
     "Patient_Service-75ebc843trial-dev!t682068.PatientAdmin",
     "Patient_Service-75ebc843trial-dev!t682068.PatientService.Read",
-    "Doctor_Service-75ebc843trial-dev!t682068.DoctorService.Read"
+    "Doctor_Service-75ebc843trial-dev!t682068.DoctorService.Read",
+    "Doctor_Service-75ebc843trial-dev!t682068.admin"
   ],
   "scopes": [
     {
@@ -15,7 +16,8 @@
   "authorities": [
     "Patient_Service-75ebc843trial-dev!t682068.PatientAdmin",
     "Patient_Service-75ebc843trial-dev!t682068.PatientService.Read",
-    "Doctor_Service-75ebc843trial-dev!t682068.DoctorService.Read"
+    "Doctor_Service-75ebc843trial-dev!t682068.DoctorService.Read",
+    "Doctor_Service-75ebc843trial-dev!t682068.admin"
   ],
   "role-templates": [
     {
@@ -47,6 +49,14 @@
       "description": "Read access to Doctor Service",
       "scope-references": [
         "Doctor_Service-75ebc843trial-dev!t682068.DoctorService.Read"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "DoctorServiceAdmin",
+      "description": "Admin access to Doctor Service",
+      "scope-references": [
+        "Doctor_Service-75ebc843trial-dev!t682068.admin"
       ],
       "attribute-references": []
     }

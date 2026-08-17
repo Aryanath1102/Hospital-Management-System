@@ -25,68 +25,65 @@ Features:
 @requires : 'authenticated-user'
 service DoctorService {
     entity Buildings as projection on hospital.Buildings;
+    entity Departments as projection on hospital.Departments;
+    entity Specializations as projection on hospital.Specializations;
 
-entity Departments as projection on hospital.Departments;
-
-entity Specializations as projection on hospital.Specializations;
-
-@odata.draft.enabled
-@restrict: [
-    {
-        grant: ['READ'],
-        to   : ['DoctorServiceReader','admin', 'doctor']
-    },
-    {
-        grant: ['CREATE', 'UPDATE', 'DELETE'],
-        to   : ['admin']
-    }
-]
-entity Doctors as projection on hospital.Doctors {
-    *
-} actions {
-    action ActivateDoctor();
-    action SuspendDoctor();
-    action RetireDoctor();
-};
-
-@restrict: [
-    {
-        grant: ['READ'],
-        to   : ['DoctorServiceReader','admin', 'doctor']
-    },
-    {
-        grant: ['CREATE', 'UPDATE', 'DELETE'],
-        to   : ['admin']
-    }
+    @odata.draft.enabled
+    @restrict: [
+        {
+            grant: ['READ'],
+            to   : ['DoctorService.Read', 'admin', 'doctor']
+        },
+        {
+            grant: ['CREATE', 'UPDATE', 'DELETE'],
+            to   : ['admin']
+        }
     ]
-entity DoctorSpecializations as projection on hospital.DoctorSpecializations;
+    entity Doctors as projection on hospital.Doctors {
+        *
+    } actions {
+        action ActivateDoctor();
+        action SuspendDoctor();
+        action RetireDoctor();
+    };
 
-@restrict: [
-    {
-        grant: ['READ'],
-        to   : ['DoctorServiceReader','admin', 'doctor']
-    },
-    {
-        grant: ['CREATE', 'UPDATE', 'DELETE'],
-        to   : ['admin']
-    }
-]
-entity DoctorSchedules as projection on hospital.DoctorSchedules;
+    @restrict: [
+        {
+            grant: ['READ'],
+            to   : ['DoctorService.Read', 'admin', 'doctor']
+        },
+        {
+            grant: ['CREATE', 'UPDATE', 'DELETE'],
+            to   : ['admin']
+        }
+    ]
+    entity DoctorSpecializations as projection on hospital.DoctorSpecializations;
 
-@restrict: [
-    {
-        grant: ['READ'],
-        to   : ['DoctorServiceReader','admin', 'doctor']
-    },
-    {
-        grant: ['CREATE', 'UPDATE', 'DELETE'],
-        to   : ['admin']
-    }
-]
-entity DoctorLeaves as projection on hospital.DoctorLeaves actions {
-    action ApproveLeave();
-    action RejectLeave();
-    action CancelLeave();
-};
+    @restrict: [
+        {
+            grant: ['READ'],
+            to   : ['DoctorService.Read', 'admin', 'doctor']
+        },
+        {
+            grant: ['CREATE', 'UPDATE', 'DELETE'],
+            to   : ['admin']
+        }
+    ]
+    entity DoctorSchedules as projection on hospital.DoctorSchedules;
 
+    @restrict: [
+        {
+            grant: ['READ'],
+            to   : ['DoctorService.Read', 'admin', 'doctor']
+        },
+        {
+            grant: ['CREATE', 'UPDATE', 'DELETE'],
+            to   : ['admin']
+        }
+    ]
+    entity DoctorLeaves as projection on hospital.DoctorLeaves actions {
+        action ApproveLeave();
+        action RejectLeave();
+        action CancelLeave();
+    };
 }

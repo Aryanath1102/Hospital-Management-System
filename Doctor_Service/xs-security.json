@@ -3,9 +3,12 @@
   "tenant-mode": "dedicated",
   "description": "Security configuration for Doctor Service",
   "scopes": [
-    {
+{
       "name": "$XSAPPNAME.admin",
-      "description": "admin"
+      "description": "admin",
+      "grant-as-authority-to-apps": [
+        "$XSAPPNAME(application,Appointment_Service-75ebc843trial-dev)"
+      ]
     },
     {
       "name": "$XSAPPNAME.doctor",
