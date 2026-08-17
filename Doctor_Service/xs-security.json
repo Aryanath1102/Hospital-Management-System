@@ -1,0 +1,55 @@
+{
+  "xsappname": "Doctor_Service-75ebc843trial-dev",
+  "tenant-mode": "dedicated",
+  "description": "Security configuration for Doctor Service",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.admin",
+      "description": "admin"
+    },
+    {
+      "name": "$XSAPPNAME.doctor",
+      "description": "doctor"
+    },
+        {
+      "name": "$XSAPPNAME.DoctorService.Read",
+      "description": "Read Doctor information for service-to-service communication",
+      "grant-as-authority-to-apps": [
+        "$XSAPPNAME(application,Appointment_Service-75ebc843trial-dev)"
+      ]
+    }
+  ],
+  "attributes": [],
+  "role-templates": [
+    {
+      "name": "admin",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.admin"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "doctor",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.doctor"
+      ],
+      "attribute-references": []
+    },
+        {
+      "name": "DoctorServiceReader",
+      "description": "Read doctor information",
+      "scope-references": [
+        "$XSAPPNAME.DoctorService.Read"
+      ],
+      "attribute-references": []
+    }
+  ],
+
+    "oauth2-configuration": {
+    "redirect-uris": [
+      "https://*.hana.ondemand.com/login/callback"
+    ]
+  }
+}

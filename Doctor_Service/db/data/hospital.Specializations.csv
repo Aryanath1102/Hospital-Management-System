@@ -1,0 +1,7 @@
+ID,Specialization_Code,Name,Normalized_Name,Description,Department_ID,Status
+aaaaaaaa-1111-1111-1111-111111111111,CARD001,Interventional Cardiology,interventional cardiology,Heart Procedures,11111111-1111-1111-1111-111111111111,Active
+bbbbbbbb-2222-2222-2222-222222222222,CARD002,Cardiac Electrophysiology,cardiac electrophysiology,Heart Rhythm Disorders,11111111-1111-1111-1111-111111111111,Active
+cccccccc-3333-3333-3333-333333333333,NEUR001,Clinical Neurology,clinical neurology,Neurological Disorders,22222222-2222-2222-2222-222222222222,Active
+dddddddd-4444-4444-4444-444444444444,ORTH001,Joint Replacement,joint replacement,Hip and Knee Replacement Surgery,33333333-3333-3333-3333-333333333333,Active
+eeeeeeee-5555-5555-5555-555555555555,ENT001,Otology,otology,Diagnosis and Treatment of Ear Disorders,44444444-4444-4444-4444-444444444444,Active
+ffffffff-6666-6666-6666-666666666666,DERM001,Cosmetic Dermatology,cosmetic dermatology,Cosmetic Skin Care and Procedures,55555555-5555-5555-5555-555555555555,Active

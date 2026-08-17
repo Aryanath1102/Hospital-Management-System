@@ -1,0 +1,95 @@
+{
+  "name": "Doctor_Service",
+  "version": "1.0.0",
+  "dependencies": {
+    "@cap-js/hana": "^2",
+    "@sap/cds": "^9.9.3",
+    "@sap/xssec": "^4",
+    "validator": "^13.15.35",
+    "cds-swagger-ui-express": "^0.11.0"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^2.4",
+    "@sap/cds-dk": "^9",
+    "cds-plugin-ui5": "^0.17.0",
+    "rimraf": "^5.0.5",
+    "mbt": "^1.2.49"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-doctorui": "cds watch --open doctorui/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "undeploy": "cf undeploy Doctor_Service --delete-services --delete-service-keys --delete-service-brokers",
+    "build": "rimraf resources mta_archives && mbt build --mtar archive",
+    "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
+  },
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "sqlite"
+      },
+      "auth": {
+        "[development]": {
+          "kind": "mocked",
+          "users": {
+            "admin": {
+              "password": "admin123",
+              "roles": [
+                "admin"
+              ]
+            },
+            "doctor": {
+              "password": "doctor123",
+              "roles": [
+                "doctor"
+              ]
+            }
+          }
+        },
+        "[hybrid]": {
+          "kind": "mocked",
+          "users": {
+            "admin": {
+              "password": "admin123",
+              "roles": [
+                "admin"
+              ]
+            },
+            "doctor": {
+              "password": "doctor123",
+              "roles": [
+                "doctor"
+              ]
+            }
+          }
+        },
+        "[production]": {
+          "kind": "xsuaa"
+        }
+      },
+      "[production]": {
+        "db": {
+          "kind": "hana"
+        },
+        "auth": {
+          "kind": "xsuaa"
+        }
+      },
+      "[hybrid]": {
+        "db": {
+          "kind": "hana"
+        }
+      },
+      "html5-repo": true
+    },
+    "fiori": {
+      "bypass_draft": true
+    }
+  },
+  "private": true,
+  "workspaces": [
+    "app/*"
+  ],
+  "sapux": [
+    "app/doctorui"
+  ]
+}
