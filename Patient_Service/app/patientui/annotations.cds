@@ -1,0 +1,1 @@
+using PatientService as service from '../../srv/patient-service';

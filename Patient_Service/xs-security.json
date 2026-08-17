@@ -1,0 +1,52 @@
+{
+  "xsappname": "Patient_Service-75ebc843trial-dev",
+  "tenant-mode": "dedicated",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.PatientAdmin",
+      "description": "PatientAdmin",
+      "grant-as-authority-to-apps": [
+        "Appointment_Service-75ebc843trial-dev!t682068"
+      ]
+    },
+    {
+      "name": "$XSAPPNAME.PatientService.Read",
+      "description": "Read patient information for service-to-service communication",
+      "grant-as-authority-to-apps": [
+        "Appointment_Service-75ebc843trial-dev!t682068"
+      ]
+    }
+  ],
+  "attributes": [],
+  "role-templates": [
+    {
+      "name": "Token_Exchange",
+      "description": "UAA",
+      "scope-references": [
+        "uaa.user"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "PatientAdmin",
+      "description": "Full access to patients",
+      "scope-references": [
+        "$XSAPPNAME.PatientAdmin"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "PatientServiceReader",
+      "description": "Read patient information",
+      "scope-references": [
+        "$XSAPPNAME.PatientService.Read"
+      ],
+      "attribute-references": []
+    }
+  ],
+  "oauth2-configuration": {
+    "redirect-uris": [
+      "https://*.cfapps.us10-003.hana.ondemand.com/**"
+    ]
+  }
+}

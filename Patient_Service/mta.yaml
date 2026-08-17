@@ -1,0 +1,123 @@
+_schema-version: "3.3.0"
+ID: Patient_Service
+description: "A simple CAP project."
+version: 1.0.0
+
+parameters:
+  enable-parallel-deployments: true
+
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm ci
+        - npx cds build --production
+        - npm run build:cf --workspace=app/patientui
+        - rm -rf app/router/webapp
+        - mkdir -p app/router/webapp
+        - cp -R app/patientui/dist/. app/router/webapp/
+
+modules:
+
+  # --------------------------------------------------
+  # CAP Backend
+  # --------------------------------------------------
+
+  - name: Patient_Service-srv
+    type: nodejs
+    path: gen/srv
+
+    parameters:
+      buildpack: nodejs_buildpack
+      instances: 1
+
+    build-parameters:
+      builder: npm-ci
+
+    provides:
+      - name: srv-api
+        properties:
+          srv-url: ${default-url}
+
+    requires:
+      - name: Patient_Service-auth
+      - name: Patient_Service-db
+
+
+  # --------------------------------------------------
+  # HANA DB Deployer
+  # --------------------------------------------------
+
+  - name: Patient_Service-db-deployer
+    type: hdb
+    path: gen/db
+
+    parameters:
+      buildpack: nodejs_buildpack
+
+    requires:
+      - name: Patient_Service-db
+
+
+  # --------------------------------------------------
+  # AppRouter
+  # --------------------------------------------------
+
+  - name: Patient_Service-approuter
+    type: approuter.nodejs
+    path: app/router
+
+    parameters:
+      memory: 256M
+      disk-quota: 256M
+      keep-existing-routes: true
+
+    build-parameters:
+      builder: npm-ci
+
+    requires:
+      - name: Patient_Service-auth
+
+      - name: srv-api
+        group: destinations
+        properties:
+          name: srv-api
+          url: ~{srv-url}
+          forwardAuthToken: true
+
+    provides:
+      - name: app-api
+        properties:
+          app-protocol: ${protocol}
+          app-uri: ${default-uri}
+
+
+resources:
+
+  # --------------------------------------------------
+  # XSUAA
+  # --------------------------------------------------
+
+  - name: Patient_Service-auth
+    type: org.cloudfoundry.managed-service
+
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+
+      config:
+        xsappname: Patient_Service-${org}-${space}
+        tenant-mode: dedicated
+
+
+  # --------------------------------------------------
+  # HANA
+  # --------------------------------------------------
+
+  - name: Patient_Service-db
+    type: com.sap.xs.hdi-container
+
+    parameters:
+      service: hana
+      service-plan: hdi-shared

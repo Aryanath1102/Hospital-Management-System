@@ -1,0 +1,71 @@
+{
+  "name": "Patient_Service",
+  "version": "1.0.0",
+
+  "dependencies": {
+    "@cap-js/hana": "^2",
+    "@sap/cds": "^9",
+    "@sap/xssec": "^4",
+    "validator": "^13.15.35"
+  },
+
+  "devDependencies": {
+    "@cap-js/sqlite": "^2.4",
+    "@sap/cds-dk": "^9",
+    "passport": "^0.7.0",
+    "cds-plugin-ui5": "^0.17.4",
+    "rimraf": "^5.0.5",
+    "mbt": "^1.2.49"
+  },
+
+  "scripts": {
+    "start": "cds-serve",
+    "watch-patientui": "cds watch --open patientui/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "build": "rimraf resources mta_archives && mbt build --mtar archive",
+    "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
+    "undeploy": "cf undeploy Patient_Service --delete-services --delete-service-keys --delete-service-brokers"
+  },
+
+"requires": {
+  "auth": {
+    "kind": "mocked",
+    "users": {
+      "admin": {
+        "password": "admin123",
+        "roles": [
+          "PatientAdmin"
+        ]
+      },
+      "patient": {
+        "password": "patient123",
+        "roles": [
+          "Patient"
+        ]
+      }
+    }
+  },
+
+  "db": {
+    "kind": "sqlite"
+  },
+
+  "[production]": {
+    "db": {
+      "kind": "hana"
+    },
+    "auth": {
+      "kind": "xsuaa"
+    }
+  }
+},
+
+  "private": true,
+
+  "workspaces": [
+    "app/*"
+  ],
+
+  "sapux": [
+    "app/patientui"
+  ]
+}
